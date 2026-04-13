@@ -1,4 +1,7 @@
+## Pipeline Status
+
 ![Hello Pipeline](https://github.com/arsin2022/cis-410-cybersecurity-automation/actions/workflows/hello.yml/badge.svg)
+
 # CIS 410: Cybersecurity Automation
 
 ## About Me
