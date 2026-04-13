@@ -1,5 +1,9 @@
-## Pipeline Status
+## My Week 2 Infrastructure
 
+Runner VM: ub-server  
+Runner IP: 192.168.1.183  
+
+Pipeline status:  
 ![Hello Pipeline](https://github.com/arsin2022/cis-410-cybersecurity-automation/actions/workflows/hello.yml/badge.svg)
 
 # CIS 410: Cybersecurity Automation
