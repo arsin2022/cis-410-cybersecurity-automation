@@ -1,3 +1,4 @@
+![Build Status](https://img.shields.io/badge/pipeline-passing-brightgreen)
 # CIS 410: Cybersecurity Automation
 
 ## About Me
