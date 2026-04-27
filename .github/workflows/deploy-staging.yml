@@ -1,16 +1,4 @@
-name: Deploy — Staging
-
-on:
-  push:
-    branches: [main]
-
-jobs:
-  deploy:
-    runs-on: self-hosted
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Deploy to staging
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.STAGING_USER }}@${{ secrets.STAGING_HOST }} 'cd /opt/app && sudo docker-compose up -d --build'
+          echo "${{ secrets.STAGING_SSH_KEY }}" > key.pem
+          chmod 600 key.pem
+          ssh -i key.pem -o StrictHostKeyChecking=no ${{ secrets.STAGING_USER }}@${{ secrets.STAGING_HOST }} 'cd /opt/app && sudo docker-compose up -d --build'
