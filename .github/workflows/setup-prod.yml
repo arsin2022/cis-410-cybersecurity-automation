@@ -1,0 +1,19 @@
+name: Setup — Prod Server
+
+on:
+  workflow_dispatch:
+
+jobs:
+  setup:
+    runs-on: self-hosted
+
+    steps:
+      - name: Install Docker on Prod
+        run: |
+          ssh -o StrictHostKeyChecking=no "${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}" << 'EOF'
+          sudo apt update
+          sudo apt install -y docker.io docker-compose
+          sudo systemctl enable docker
+          sudo systemctl start docker
+          sudo usermod -aG docker $USER
+          EOF
