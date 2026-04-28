@@ -6,14 +6,14 @@ on:
 jobs:
   setup:
     runs-on: self-hosted
-
     steps:
-      - name: Install Docker on Prod
-        run: |
-          ssh -o StrictHostKeyChecking=no "${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}" << 'EOF'
+      - run: |
+          echo "${{ secrets.PROD_SSH_KEY }}" > /tmp/prod_key
+          chmod 600 /tmp/prod_key
+          ssh -i /tmp/prod_key -o StrictHostKeyChecking=no "${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}" << 'EOF'
           sudo apt update
           sudo apt install -y docker.io docker-compose
           sudo systemctl enable docker
           sudo systemctl start docker
-          sudo usermod -aG docker $USER
           EOF
+          rm /tmp/prod_key
