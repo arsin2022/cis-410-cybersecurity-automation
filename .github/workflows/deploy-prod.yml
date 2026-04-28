@@ -14,8 +14,9 @@ jobs:
 
           ssh -i /tmp/prod_key -o StrictHostKeyChecking=no "${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}" << 'EOF'
           cd /opt/app
-          docker compose down || true
-          docker compose up -d --build
+          cd ~/cis-410-cybersecurity-automation
+docker-compose down || true
+docker-compose up -d --build
           EOF
 
           rm /tmp/prod_key
