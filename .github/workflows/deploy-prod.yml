@@ -11,8 +11,8 @@ jobs:
           echo "${{ secrets.PROD_SSH_KEY }}" > /tmp/prod_key
           chmod 600 /tmp/prod_key
 
-          ssh -i /tmp/prod_key -o StrictHostKeyChecking=no ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }} << 'EOF'
-          cd ~/cis-410-cybersecurity-automation
+          ssh -i /tmp/prod_key -o StrictHostKeyChecking=no ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }} << EOF
+          cd /opt/cis-410-cybersecurity-automation
           docker-compose down || true
           docker-compose up -d --build
           EOF
