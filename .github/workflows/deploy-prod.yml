@@ -8,7 +8,11 @@ jobs:
     runs-on: self-hosted
     steps:
       - run: |
-          ssh -i ~/.ssh/deploy_key_prod ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }} "
+          echo "${{ secrets.PROD_SSH_KEY }}" > /tmp/prod_key
+          chmod 600 /tmp/prod_key
+          ssh -i /tmp/prod_key -o StrictHostKeyChecking=no ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }} "
+          cd /opt/app
           docker compose down || true
           docker compose up -d --build
           "
+          rm /tmp/prod_key
